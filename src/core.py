@@ -11,6 +11,14 @@ def make_connection(host, username, password):
         print "Issue when making connection: %s" % str(e)
 
 
+def make_connection_with_key(host, username, key_path, passphrase):
+    try:
+        global sftp
+        sftp = pysftp.Connection(host, username=username, private_key=key_path, private_key_pass=passphrase)
+    except Exception, e:
+        print "Issue when making connection with keys: %s" % str(e)
+
+
 #
 # Path : In which path to create folder if not exists and upload file
 # file_name: local file path and name
