@@ -46,7 +46,15 @@ def execute_command(path, command):
         print "Issue when executing command %s: %s" % (command, str(e))
 
 
-execute_command('/root/batman/', 'mkdir master')
+def make_dir(path, dir_name):
+    try:
+        sftp.execute('cd %s && mkdir %s' % (path, dir_name))
+    except Exception, e:
+        print "Issue when making dir %s: %s" % (dir_name, str(e))
 
 
-sftp.close()
+def close_connection():
+    try:
+        sftp.close()
+    except Exception, e:
+        print "Issue when closing connection : %s" % (str(e))
